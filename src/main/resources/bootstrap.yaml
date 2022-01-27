@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: k8s_project
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      #配置中心
+      config:
+        #        server-addr: 34.123.101.55:30683,34.66.208.178:30683,35.226.147.194:30683
+        file-extension: yaml
+        encode: UTF-8
+        shared-dataids: k8s_project.yaml,jdbc.yaml
+        refreshable-dataids: k8s_project.yaml,jdbc.yaml
+        namespace: 76e63da1-d905-4356-8419-0157c5effe59
+        #        server-addr: 34.134.83.208:8848
+        server-addr: gcp-nacos.hjfu2022.tk:8848
+      #       shared-dataids和refreshable-dataids就等价于下面的ext-config的配置，只是ext-config的配置更加灵活
+      #        ext-config:
+      #          - data-id: share-config1.yml
+      #            group: DEFAULT_GROUP
+      #            refresh: true
+      #          - data-id: share-config2.yml
+      #            group: DEFAULT_GROUP
+      #            refresh: true
+      #注册中心
+      discovery:
+        #        server-addr: 34.123.101.55:30683,34.66.208.178:30683,35.226.147.194:30683
+        service: ${spring.application.name}
+        enabled: true
+        namespace: 76e63da1-d905-4356-8419-0157c5effe59
+        #        server-addr: 34.134.83.208:8848
+        server-addr: gcp-nacos.hjfu2022.tk:8848
+#        ip: 112.112.112.112
+
+management:
+  endpoints:
+    web:
+      exposure:
+        exclude: "*"
