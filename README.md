@@ -1,2 +1,2 @@
 # k8s_project
-初始化
+springboot 微服务整合k8s部署测试项目
